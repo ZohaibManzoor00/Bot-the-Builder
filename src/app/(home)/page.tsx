@@ -1,5 +1,6 @@
 import { AppLogo } from "@/components/ui/app-logo";
 import { ProjectForm } from "@/modules/home/ui/components/project-form";
+import { ProjectsList } from "@/modules/home/ui/components/projects-list";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           <ProjectForm />
         </div>
       </section>
+      <ProjectsList />
     </div>
   );
 }
