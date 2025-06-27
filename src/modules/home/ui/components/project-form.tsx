@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import TextareaAutosize from "react-textarea-autosize";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
+import { useClerk } from "@clerk/nextjs";
 
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,7 @@ const formSchema = z.object({
 });
 
 export function ProjectForm() {
+  const clerk = useClerk()
   const router = useRouter();
   const queryClient = useQueryClient();
   const [isFocused, setIsFocused] = useState(false);
@@ -44,6 +46,9 @@ export function ProjectForm() {
       },
       onError: (error) => {
         toast.error(error.message);
+        if (error.data?.code === "UNAUTHORIZED") {
+          clerk.openSignIn();
+        }
       },
     })
   );
