@@ -26,8 +26,8 @@ export default function ErrorPage({
           <div className="space-y-2">
             <h1 className="text-2xl font-semibold text-slate-900">Oops! Something went wrong</h1>
             <p className="text-slate-600 text-sm leading-relaxed">
-              We encountered an unexpected error while processing your request. Don't worry, our team has been notified
-              and we're working to fix it.
+              {`We encountered an unexpected error while processing your request. Don't worry, our team has been notified
+              and we're working to fix it.`}
             </p>
           </div>
 

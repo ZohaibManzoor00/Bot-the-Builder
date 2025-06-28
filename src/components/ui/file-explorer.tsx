@@ -12,7 +12,6 @@ import {
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,

@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
-  EditIcon,
   SunMoonIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,9 +20,6 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuGroup,
-  DropdownMenuLabel,
-  DropdownMenuCheckboxItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
@@ -38,7 +34,7 @@ export function ProjectHeader({ projectId }: Props) {
   const { data: project } = useSuspenseQuery(
     trpc.projects.getOne.queryOptions({ id: projectId })
   );
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
     <header className="p-2 flex justify-between items-center border-b">

@@ -5,14 +5,12 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarProvider,
   SidebarRail,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,

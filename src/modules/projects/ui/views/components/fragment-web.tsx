@@ -3,7 +3,6 @@ import { Hint } from "@/components/ui/hint";
 import { Fragment } from "@/generated/prisma";
 import { ExternalLinkIcon, RefreshCcwIcon } from "lucide-react";
 import { useState } from "react";
-import { date } from "zod";
 
 interface Props {
   data: Fragment;
