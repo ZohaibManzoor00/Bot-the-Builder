@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import { Fragment } from "@/generated/prisma";
+import { useAuth } from "@clerk/nextjs";
 
 import {
   ResizableHandle,
@@ -25,6 +26,8 @@ interface Props {
 export function ProjectView({ projectId }: Props) {
   const [activeFragment, setActiveFragment] = useState<Fragment | null>(null);
   const [tabState, setTabState] = useState<"preview" | "code">("preview");
+  const { has } = useAuth();
+  const hasProAccess = has?.({ plan: "pro" });
 
   return (
     <div className="h-screen">
@@ -65,11 +68,13 @@ export function ProjectView({ projectId }: Props) {
                 </TabsTrigger>
               </TabsList>
               <div className="ml-auto flex items-center gap-x-2">
-                <Button asChild size="sm" variant="tertiary">
-                  <Link href="/pricing">
-                    <CrownIcon /> Upgrade
-                  </Link>
-                </Button>
+                {!hasProAccess && (
+                  <Button asChild size="sm" variant="tertiary">
+                    <Link href="/pricing">
+                      <CrownIcon /> Upgrade
+                    </Link>
+                  </Button>
+                )}
                 <UserControl />
               </div>
             </div>

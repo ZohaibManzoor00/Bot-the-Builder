@@ -30,6 +30,9 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         cssLayerName: "clerk",
+        // variables: {
+          // colorPrimary: "" // Custom accent color
+        // }
       }}
     >
       <TRPCReactProvider>
