@@ -59,7 +59,6 @@ export function MessagesContainer({ projectId, activeFragment, setActiveFragment
       </div>
       <div className="relative p-3 pt-1">
         <div className="absolute -top-6 left-0 right-0 h-6 bg-gradient-to-b from-transparent to-background/70 pointer-events-none" />
-
         <MessagesForm projectId={projectId} />
       </div>
     </div>

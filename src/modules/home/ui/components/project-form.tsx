@@ -10,6 +10,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
 import { useClerk } from "@clerk/nextjs";
+import { useCurrentTheme } from "@/hooks/use-current-theme";
+import { dark } from "@clerk/themes";
 
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -30,6 +32,7 @@ export function ProjectForm() {
   const queryClient = useQueryClient();
   const [isFocused, setIsFocused] = useState(false);
   const trpc = useTRPC();
+  const theme = useCurrentTheme()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,7 +51,7 @@ export function ProjectForm() {
       onError: (error) => {
         toast.error(error.message);
         if (error.data?.code === "UNAUTHORIZED") {
-          clerk.openSignIn();
+          clerk.openSignIn({ appearance: { baseTheme: theme === "dark" ? dark : undefined } });
         }
         if (error.data?.code === "TOO_MANY_REQUESTS") {
           router.push("/pricing");

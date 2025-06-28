@@ -229,16 +229,16 @@ export const codeAgentFunction = inngest.createFunction(
     });
 
     await step.run("save-result", async () => {
-      if (isError) {
-        return await prisma.message.create({
-          data: {
-            projectId: event.data.projectId,
-            content: "Something went wrong, please try again.",
-            role: "ASSISTANT",
-            type: "ERROR",
-          },
-        });
-      }
+      // if (isError) {
+      //   return await prisma.message.create({
+      //     data: {
+      //       projectId: event.data.projectId,
+      //       content: "Something went wrong, please try again.",
+      //       role: "ASSISTANT",
+      //       type: "ERROR",
+      //     },
+      //   });
+      // }
 
       return await prisma.message.create({
         data: {

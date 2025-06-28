@@ -37,7 +37,7 @@ export const MessageLoading = () => {
     <div className="flex flex-col group px-2 pb-4">
       <div className="flex items-center gap-2 pl-2 mb-2">
         <AppLogo className={"shrink-0"} width={18} height={18} />
-        <span className="text-sm font-medium">Agent</span>
+        <span className="text-sm font-medium">Bot the Builder</span>
       </div>
       <div className="flex flex-col gap-y-4 pl-8.5">
         <ShimmerMessages />

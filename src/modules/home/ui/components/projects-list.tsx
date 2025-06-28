@@ -19,7 +19,7 @@ export function ProjectsList() {
   return (
     <div className="w-full bg-white dark:bg-sidebar rounded-xl p-8 border flex flex-col gap-y-6 sm:gap-y-4">
       <h1 className="text-2xl font-semibold">
-        All the work done by bot for {user?.firstName}
+        {user?.firstName}&apos;s Botfolio
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {projects?.length === 0 ? (
