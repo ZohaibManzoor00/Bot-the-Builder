@@ -14,6 +14,7 @@ import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 import { parseAgentOutput } from "./utils";
 import { z } from "zod";
+import { SANDBOX_TIMEOUT } from "./types";
 
 interface AgentState {
   summary: string;
@@ -26,6 +27,7 @@ export const codeAgentFunction = inngest.createFunction(
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("lovable-v0-clone-2");
+      await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });
 
@@ -38,8 +40,9 @@ export const codeAgentFunction = inngest.createFunction(
             projectId: event.data.projectId,
           },
           orderBy: {
-            createdAt: "asc",
+            createdAt: "desc",
           },
+          take: 8
         });
 
         for (let i = 0; i < messages.length; i++) {
@@ -47,11 +50,11 @@ export const codeAgentFunction = inngest.createFunction(
           formattedMessages.push({
             type: "text",
             role: message.role === "ASSISTANT" ? "assistant" : "user",
-            content: `${message.role === "ASSISTANT" ? "[ASSISTANT]: " : "[USER]: "}${message.content}${i === messages.length - 1 ? " (Latest)" : ""}`,
+            content: `Message ${messages.length - i}: ${i === 0 ? " (Latest)" : ""} ${message.content}`,
           });
         }
 
-        return formattedMessages;
+        return formattedMessages.reverse();
       }
     );
 

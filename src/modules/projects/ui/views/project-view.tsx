@@ -4,6 +4,7 @@ import { Suspense, useState } from "react";
 import Link from "next/link";
 import { Fragment } from "@/generated/prisma";
 import { useAuth } from "@clerk/nextjs";
+import { ErrorBoundary } from "react-error-boundary";
 
 import {
   ResizableHandle,
@@ -37,16 +38,21 @@ export function ProjectView({ projectId }: Props) {
           minSize={20}
           className="flex flex-col min-h-0"
         >
-          <Suspense fallback={<p>Loading project...</p>}>
-            <ProjectHeader projectId={projectId} />
-          </Suspense>
-          <Suspense fallback={<p>Loading messages...</p>}>
-            <MessagesContainer
-              projectId={projectId}
-              activeFragment={activeFragment}
-              setActiveFragment={setActiveFragment}
-            />
-          </Suspense>
+          <ErrorBoundary fallback={<div>Project header error</div>}>
+            <Suspense fallback={<p>Loading project...</p>}>
+              <ProjectHeader projectId={projectId} />
+            </Suspense>
+          </ErrorBoundary>
+
+          <ErrorBoundary fallback={<div>Messages container error</div>}>
+            <Suspense fallback={<p>Loading messages...</p>}>
+              <MessagesContainer
+                projectId={projectId}
+                activeFragment={activeFragment}
+                setActiveFragment={setActiveFragment}
+              />
+            </Suspense>
+          </ErrorBoundary>
         </ResizablePanel>
 
         <ResizableHandle className="hover:bg-primary transition-colors" />
@@ -85,7 +91,9 @@ export function ProjectView({ projectId }: Props) {
             <TabsContent value="code" className="min-h-0">
               <div className="h-full w-full">
                 {!!activeFragment?.files && (
-                  <FileExplorer files={activeFragment.files as { [path: string]: string }} />
+                  <FileExplorer
+                    files={activeFragment.files as { [path: string]: string }}
+                  />
                 )}
               </div>
             </TabsContent>
