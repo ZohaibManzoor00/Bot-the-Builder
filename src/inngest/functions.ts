@@ -42,7 +42,7 @@ export const codeAgentFunction = inngest.createFunction(
           orderBy: {
             createdAt: "desc",
           },
-          take: 8
+          take: 8,
         });
 
         for (let i = 0; i < messages.length; i++) {
@@ -50,7 +50,9 @@ export const codeAgentFunction = inngest.createFunction(
           formattedMessages.push({
             type: "text",
             role: message.role === "ASSISTANT" ? "assistant" : "user",
-            content: `Message ${messages.length - i}: ${i === 0 ? " (Latest)" : ""} ${message.content}`,
+            content: `Message ${messages.length - i}: ${
+              i === 0 ? " (Latest)" : ""
+            } ${message.content}`,
           });
         }
 
@@ -211,7 +213,10 @@ export const codeAgentFunction = inngest.createFunction(
     );
 
     const fragmentTitle = parseAgentOutput(fragmentTitleOutput, "Fragment");
-    const responseSummary = parseAgentOutput(responseOutput, "Here's what I built for you.");
+    const responseSummary = parseAgentOutput(
+      responseOutput,
+      "Here's what I built for you."
+    );
 
     const isError =
       !result.state.data.summary ||
@@ -220,7 +225,7 @@ export const codeAgentFunction = inngest.createFunction(
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await getSandbox(sandboxId);
       const host = sandbox.getHost(3000);
-      return `http://${host}`;
+      return `https://${host}`;
     });
 
     await step.run("save-result", async () => {
