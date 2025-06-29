@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import Logo from "../../../public/logo.svg";
+import Logo from "../../../public/logo.png";
 
 interface AppLogoProps {
   className?: string;
