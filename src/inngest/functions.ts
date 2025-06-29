@@ -218,9 +218,9 @@ export const codeAgentFunction = inngest.createFunction(
       "Here's what I built for you."
     );
 
-    const isError =
-      !result.state.data.summary ||
-      Object.keys(result.state.data.files || {}).length === 0;
+    // const isError =
+    //   !result.state.data.summary ||
+    //   Object.keys(result.state.data.files || {}).length === 0;
 
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await getSandbox(sandboxId);
