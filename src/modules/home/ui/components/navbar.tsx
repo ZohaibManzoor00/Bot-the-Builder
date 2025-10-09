@@ -7,13 +7,12 @@ import {
   SignUpButton,
   useUser,
 } from "@clerk/nextjs";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { AppLogo } from "@/components/ui/app-logo";
+import { NavbarLogo } from "./navbar-logo";
 import { UserControl } from "@/components/ui/user-control";
 import { cn } from "@/lib/utils";
 import { useScroll } from "@/hooks/use-scroll";
+import { ThemeToggler } from "@/components/ui/theme-toggle";
 
 export function Navbar() {
   const { isScrolled } = useScroll();
@@ -29,25 +28,22 @@ export function Navbar() {
       )}
     >
       <div className="max-w-5xl mx-auto w-full flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2">
-          <AppLogo width={24} height={24} />
-          <span className="font-semibold text-lg">Bot the Builder</span>
-        </Link>
+        <NavbarLogo width={24} height={24} />
+        <div className="flex gap-x-4 items-center">
+          <div className="hidden md:block">
+            <ThemeToggler />
+          </div>
+
         <SignedOut>
-          <div className="flex gap-2">
-            <SignUpButton>
-              <Button variant="outline" size="sm">
-                Sign up
-              </Button>
-            </SignUpButton>
-            <SignInButton>
-              <Button size="sm">Sign in</Button>
-            </SignInButton>
+          <div className="flex gap-x-6">
+            <SignUpButton />
+            <SignInButton />
           </div>
         </SignedOut>
         <SignedIn>
           <UserControl showName />
         </SignedIn>
+        </div>
       </div>
     </nav>
   );

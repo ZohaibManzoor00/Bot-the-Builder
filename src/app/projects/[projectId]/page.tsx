@@ -11,12 +11,8 @@ interface Props {
 export default async function ProjectPage({ params }: Props) {
   const { projectId } = await params;
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(
-    trpc.messages.getMany.queryOptions({ projectId })
-  );
-  void queryClient.prefetchQuery(
-    trpc.projects.getOne.queryOptions({ id: projectId })
-  );
+  void queryClient.prefetchQuery(trpc.messages.getMany.queryOptions({ projectId }));
+  void queryClient.prefetchQuery(trpc.projects.getOne.queryOptions({ id: projectId }));
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

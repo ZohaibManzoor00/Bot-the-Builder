@@ -78,8 +78,8 @@ const AssistantMessage = ({
       )}
     >
       <div className="flex items-center gap-2 pl-2 mb-2">
-        <AppLogo />
-        <span className="text-sm font-medium">Bot the Builder</span>
+        <AppLogo width={24} height={24} />
+        <span className="text-sm font-medium">Nester</span>
         <span className="text-sm text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
           {format(createdAt, "HH:mm 'on' MMM dd, yyyy")}
         </span>
