@@ -38,6 +38,7 @@ export const projectRouter = createTRPCRouter({
       orderBy: {
         updatedAt: "desc",
       },
+      take: 6,
     });
     return projects;
   }),

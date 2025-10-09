@@ -17,7 +17,7 @@ export function ProjectsList() {
   if (!user) return null
 
   return (
-    <div className="w-full bg-white dark:bg-sidebar rounded-xl p-8 border flex flex-col gap-y-6 sm:gap-y-4">
+    <div className="w-full bg-white dark:bg-sidebar rounded-sm p-8 border flex flex-col gap-y-6 sm:gap-y-4">
       <h1 className="text-2xl font-semibold">
         {user?.firstName}&apos;s Botfolio
       </h1>

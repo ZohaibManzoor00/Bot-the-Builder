@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BotWorkingAnimation } from "@/components/ui/bot-wave-animation";
+import { AppLogo } from "@/components/ui/app-logo";
 
 const ShimmerMessages = () => {
   // const messages = [
@@ -14,24 +14,12 @@ const ShimmerMessages = () => {
   //   "Almost ready...",
   // ];
   const messages = [
-    "Bot's got his hard hat on... (and his game face).",
-    "Just calibrating the... uh... 'focus' settings.",
-    "Warming up the circuits... (for optimal button mashing).",
-    "Analyzing your request... (between levels).",
-    "Prepping the pixel palette... (for high scores).",
-
-    "Laying down the foundational code... (totally not a high score).",
-    "Wrangling unruly CSS... (it's like a boss battle!).",
-    "Crafting components... (while dodging digital projectiles).",
-    "Optimizing for lightning speed... (my reflexes are amazing!).",
-    "Assembling the interactive widgets... (gotta catch 'em all!).",
-
-    "Adding the sparkle and shine... (almost done with this side quest!).",
-    "Polishing every pixel... (just one more turn...).",
-    "Ensuring cross-browser harmony... (multiplayer mode is intense).",
-    "Just calibrating the creativity circuits... (don't tell the boss!).",
-    "Almost ready for its grand reveal! (Phew, just made it!).",
-    "Website construction complete! (Now, where was I?).",
+    "Nester is on it...",
+    "Putting everything in place...",
+    "Making sure it all fits together...",
+    "Fine-tuning the details...",
+    "Setting things up just right...",
+    "Almost there...",
   ];
 
   const [currentMessageIdx, setCurrentMessageIdx] = useState(0);
@@ -55,7 +43,8 @@ const ShimmerMessages = () => {
 export const MessageLoading = () => {
   return (
     <div className="flex group px-2 items-center gap-1 pb-4">
-      <BotWorkingAnimation />
+      <AppLogo spin />
+      {/* <BotWorkingAnimation /> */}
       <ShimmerMessages />
     </div>
   );

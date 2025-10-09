@@ -4,7 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 @layer theme, base, clerk, components, utilities;
 
-
 /* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -297,6 +296,19 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-line-shadow: line-shadow 15s linear infinite;
+  @keyframes line-shadow {
+  0% {
+    background-position: 0 0;
+    }
+  100% {
+    background-position: 100% -100%;
+    }
+  }
+}
+
+html, body {
+  overscroll-behavior: none;
 }
 
 @layer base {
@@ -304,6 +316,12 @@
   [role="button"]:not([disabled]) {
     cursor: pointer;
   }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @layer base {
